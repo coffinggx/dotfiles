@@ -1,0 +1,70 @@
+/* Transparent, centered, modern look */
+* {
+  font: "JetBrainsMono Nerd Font 12";
+  bg:             #0f1116E6;   /* semi-transparent */
+  bg-alt:         #1a1f29cc;
+  fg:             #e6e9ef;
+  muted:          #a7aebd;
+  accent:         #7aa2f7;
+  urgent:         #f7768e;
+  border:         #00000066;
+  spacing:        10px;
+}
+
+window {
+  transparency:    "real";      /* let compositor (Hyprland, picom) blur */
+  location:        center;
+  anchor:          center;
+  width:           40%;
+  border:          2px;
+  border-color:    @border;
+  border-radius:   20px;
+  background-color:@bg;
+  padding:         15px;
+}
+
+mainbox { padding: 10px; }
+
+inputbar {
+  children:        [ prompt, entry ];
+  background-color:@bg-alt;
+  border-radius:   12px;
+  padding:         10px 14px;
+  text-color:      @fg;
+}
+
+prompt {
+  text: " ";
+  margin: 0 10px 0 0;
+  text-color: @accent;
+}
+
+entry {
+  placeholder:       "Search...";
+  placeholder-color: @muted;
+  text-color:        @fg;
+}
+
+listview {
+  spacing:   8px;
+  scrollbar: false;
+  cycle:     true;
+}
+
+element {
+  padding:          10px 12px;
+  background-color: transparent;
+  border-radius:    12px;
+  text-color:       @fg;
+}
+
+element selected {
+  background-color: @accent;
+  text-color:       #0f1116;
+}
+
+element urgent {
+  background-color: @urgent;
+  text-color:       #0f1116;
+}
+

@@ -1,0 +1,67 @@
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Y"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "W"
+mods = "Alt"
+
+[general]
+import = ["/home/kage/.config/alacritty/themes/dracula.yml"]
+
+[terminal]
+
+[cursor]
+unfocused_hollow = false
+
+[cursor.style]
+blinking = "Always"
+shape = "Beam"
+
+[env]
+TERM = "alacritty"
+
+[font]
+builtin_box_drawing = true
+size = 12.0
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.italic]
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[scrolling]
+history = 100000
+multiplier = 6
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ''',│`|:"' ()[]{}<>	'''
+
+[terminal.shell]
+program = "/bin/zsh"
+
+[window]
+dynamic_title = true
+opacity = 1.0
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[keyboard]

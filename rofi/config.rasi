@@ -1,0 +1,19 @@
+configuration {
+  modi: "drun,run,window";
+  show-icons: true;
+  icon-theme: "Papirus";
+  drun-display-format: "{icon} {name}";
+  display-drun: "Apps";
+  display-run: "Run";
+  display-window: "Windows";
+  terminal: "kitty";
+  lines: 3;
+  columns: 1;
+  matching: "fuzzy";
+  case-sensitive: false;
+  cycle: true;
+  location: 0;
+  fullscreen: false;
+}
+  @theme "~/.config/rofi/modern.rasi"
+
