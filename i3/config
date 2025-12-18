@@ -13,8 +13,9 @@ set $mod Mod4
 # Hide titlebar
 new_window pixel
 
-# Font for window titles.
-font pango: Jetbrains Mono Nerd Font 10
+# Font for window title
+font pango:monospace 15px
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -24,8 +25,8 @@ bindsym $mod+Return exec kitty
 
 # Kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod+b exec firefox
 bindsym $mod+Shift+b exec brave
+bindsym $mod+b exec librewolf
 # Start rofi
 bindsym $mod+d exec rofi -show drun -columns 3
 
@@ -65,7 +66,7 @@ bindsym $mod+f fullscreen toggle
 # Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+e layout toggle split
 
 # Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -132,7 +133,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Shift+e exec "~/.config/i3blocks/blocks/shutdown_menu/shutdown_menu"
 
 # class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #00000
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
 client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
@@ -201,4 +202,10 @@ exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id notify-send "Welcome back $USER!" -i ~/.images/icons8-dog-100.png
-exec_always feh --bg-fill /home/bladex404/Downloads/gg.jpg
+exec_always feh --bg-fill /home/bladex404/Downloads/gg.png
+exec --no-startup-id xinput set-prop "ELAN07FB:00 04F3:321A Touchpad" "libinput Accel Speed" 0.6
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
+
+
+bindsym $mod+e bar mode toggle
