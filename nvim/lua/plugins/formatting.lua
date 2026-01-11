@@ -25,11 +25,11 @@ return {
 				rust = { "rustfmt" },
 				c = { "clang-format" },
 			},
-			format_after_save = {
-				lsp_fallback = true,
-				async = true,
-				timeout_ms = 1000,
-			},
+			-- format_after_save = {
+			-- 	lsp_fallback = true,
+			-- 	async = true,
+			-- 	timeout_ms = 1000,
+			-- },
 		})
 
 		-- Key mapping for manual formatting
@@ -41,15 +41,15 @@ return {
 			})
 		end, { desc = "Format file or range (in visual mode)" })
 		-- Optionally, you can set up format on save
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*",
-			callback = function()
-				conform.format({
-					lsp_fallback = true,
-					async = true,
-					timeout_ms = 1000,
-				})
-			end,
-		})
+		-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+		-- 			pattern = "*",
+		-- 			callback = function()
+		-- 				conform.format({
+		-- 					lsp_fallback = true,
+		-- 					async = true,
+		-- 					timeout_ms = 1000,
+		-- 				})
+		-- 			end,
+		-- 		})
 	end,
 }
