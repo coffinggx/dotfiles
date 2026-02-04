@@ -1,10 +1,12 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		lazy = false, -- REQUIRED for headless
 		config = function()
 			require("mason").setup()
 		end,
 	},
+
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
@@ -23,16 +25,22 @@ return {
 			})
 		end,
 	},
+
+	{
+		"mfussenegger/nvim-jdtls",
+	},
+
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
 		config = function()
-			local mason_tool_installer = require("mason-tool-installer")
-			mason_tool_installer.setup({
+			require("mason-tool-installer").setup({
 				ensure_installed = {
-					"prettier", -- prettier formatter
-					"stylua", -- lua formatter
-					"black", -- python formatter
-					-- "pylint", -- python linter
+					"prettier",
+					"stylua",
+					"black",
 					"eslint_d",
 					"rustfmt",
 					"clang-format",
@@ -51,13 +59,12 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			-- Configure diagnostic display - only in normal mode
 			vim.diagnostic.config({
-				virtual_text = false, -- Show diagnostic messages as virtual text
-				signs = true, -- Show diagnostic signs in the sign column
-				underline = true, -- Underline diagnostics
-				update_in_insert = false, -- Hide diagnostics in insert mode
-				severity_sort = true, -- Sort diagnostics by severity
+				virtual_text = false,
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
 				float = {
 					focusable = false,
 					style = "minimal",
@@ -68,7 +75,6 @@ return {
 				},
 			})
 
-			-- Add autocommands to specifically hide diagnostics in insert mode
 			vim.api.nvim_create_autocmd("InsertEnter", {
 				callback = function()
 					vim.diagnostic.hide()
@@ -81,53 +87,27 @@ return {
 				end,
 			})
 
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-			})
-
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.pyright.setup({ capabilities = capabilities })
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 				filetypes = { "rust" },
 				settings = {
 					["rust_analyzer"] = {
-						cargo = {
-							allFeatures = true,
-						},
+						cargo = { allFeatures = true },
 					},
 				},
 			})
 
-			-- configure html server
-			lspconfig["html"].setup({
+			lspconfig.html.setup({ capabilities = capabilities })
+			lspconfig.clangd.setup({ capabilities = capabilities })
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
-			})
-
-			lspconfig["clangd"].setup({
-				capabilities = capabilities,
-			})
-
-			-- configure typescript server with plugin
-			lspconfig["ts_ls"].setup({
-				capabilities = capabilities,
-				-- 16 gb
 				maxTsServerMemory = 16000,
 			})
-
-			-- configure css server
-			lspconfig["cssls"].setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig["gopls"].setup({
-				capabilities = capabilities,
-			})
-
-			-- configure tailwindcss server
-			lspconfig["tailwindcss"].setup({
+			lspconfig.cssls.setup({ capabilities = capabilities })
+			lspconfig.gopls.setup({ capabilities = capabilities })
+			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 				filetypes = {
 					"html",
@@ -140,18 +120,34 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {}) -- go to declaration
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "K", vim.lsp.buf.hover)
+			vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration)
+			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
+			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 
-			-- Add keybind to show diagnostics in a floating window
-			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics" })
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-			vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
+			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+
+			vim.keymap.set("n", "<leader>w", "<C-w>w")
+
+			vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
+			vim.keymap.set("n", "<leader>Q", function()
+				vim.diagnostic.setloclist()
+				vim.cmd("lopen")
+			end)
+
+			vim.keymap.set("n", "<leader>qc", "<cmd>lclose<cr>")
+
+			vim.keymap.set("n", "<leader>cA", function()
+				vim.lsp.buf.code_action({
+					apply = true,
+					context = { only = { "source.fixAll" } },
+				})
+			end)
 		end,
 	},
+
 	{
 		"rust-lang/rust.vim",
 		ft = "rust",
@@ -160,3 +156,4 @@ return {
 		end,
 	},
 }
+
