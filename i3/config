@@ -1,82 +1,52 @@
-# For the benefit of emacs users: -*- shell-script -*-
-#
-#  _ _____                    __ _
-# (_)___ /    ___ ___  _ __  / _(_) __ _
-# | | |_ \   / __/ _ \| '_ \| |_| |/ _` |
-# | |___) | | (_| (_) | | | |  _| | (_| |
-# |_|____/   \___\___/|_| |_|_| |_|\__, |
-#                                  |___/
-
-# Default modkey
 set $mod Mod4
 
-# Hide titlebar
 new_window pixel
+default_border pixel 0
+default_floating_border pixel 1
 
-# Font for window title
 font pango:monospace 15px
-
-
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Start a terminal
-bindsym $mod+Return exec kitty
 
-# Kill focused window
+bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
+
 bindsym $mod+Shift+b exec brave
-bindsym $mod+b exec librewolf
-# Start rofi
+
 bindsym $mod+d exec rofi -show drun -columns 3
 
-# Move between windows
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
-# Alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# Move focused window
+
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 
-# Alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Split in horizontal orientation
+
 bindsym $mod+h split h
-
-# Split in vertical orientation
 bindsym $mod+v split v
-
-# Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
 
-# Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# Focus the parent container
 bindsym $mod+a focus parent
-# switch to workspace
+
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -88,7 +58,6 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
-# move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
@@ -100,112 +69,67 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Enable float for some windows
-for_window [class="^Pavucontrol$"]  floating enable
+for_window [class="^Pavucontrol$"] floating enable
 for_window [class="^Lxappearance$"] floating enable
-for_window [class="^Arandr$"]       floating enable
+for_window [class="^Arandr$"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [floating] resize set 880 620
+for_window [floating] move position center
 
-# Reload the configuration file
-bindsym $mod+Shift+c reload
+for_window [workspace="5"] floating enable
+for_window [workspace="5"] resize set 900 1000
+for_window [workspace="5"] move position center
 
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+mode "resize" {
+    bindsym Left  resize shrink width  10 px or 1 ppt
+    bindsym Down  resize grow   height 10 px or 1 ppt
+    bindsym Up    resize shrink height 10 px or 1 ppt
+    bindsym Right resize grow   width  10 p0x or 1 ppt
 
-# Lock screen
-bindsym $mod+Shift+x exec betterlockscreen -l dimblur
-exec --no-startup-id  xset r rate 200 50
-
-# Resize window (you can also use the mouse for that)
-mode "resize"
-{
-    # Resize with the arrow keys
-    bindsym Left  resize shrink width  1 px or 1 ppt
-    bindsym Down  resize grow   height 1 px or 1 ppt
-    bindsym Up    resize shrink height 1 px or 1 ppt
-    bindsym Right resize grow   width  1 px or 1 ppt
-
-    # Back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
-bindsym $mod+Shift+e exec "~/.config/i3blocks/blocks/shutdown_menu/shutdown_menu"
 
-# class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #00000
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
 
-# Start i3blocks to display a workspace bar
-bar {
-    font pango: SauceCodePro Nerd Font 9
-    i3bar_command i3bar
-    output primary
-    position bottom
-    status_command i3blocks
-    strip_workspace_numbers yes
-    tray_output nonprimary
-
-    colors {
-        background #282A36
-        statusline #F8F8F2
-        separator  #44475A
-
-        focused_workspace  #44475A #44475A #F8F8F2
-        active_workspace   #282A36 #44475A #F8F8F2
-        inactive_workspace #282A36 #282A36 #BFBFBF
-        urgent_workspace   #FF5555 #FF5555 #F8F8F2
-        binding_mode       #FF5555 #FF5555 #F8F8F2
-    }
-}
+# class                 border  background text     indicator child_border
+client.focused          #5E5C64 #1E1E1E #F2F2F2 #5E5C64   #5E5C64
+client.focused_inactive #3A3A3A #1E1E1E #CFCFCF #3A3A3A   #3A3A3A
+client.unfocused        #1E1E1E #1E1E1E #9E9E9E #1E1E1E   #1E1E1E
+client.urgent           #A54242 #A54242 #FFFFFF #A54242   #A54242
+client.placeholder      #1E1E1E #1E1E1E #FFFFFF #1E1E1E   #1E1E1E
+client.background       #1E1E1E
 
 bar {
-    font pango: SauceCodePro Nerd Font 10
-    i3bar_command i3bar
-    output nonprimary
-    position top
-    strip_workspace_numbers yes
-    tray_output DP-4
-
-    colors {
-        background #282A36
-        statusline #F8F8F2
-        separator  #44475A
-
-        focused_workspace  #44475A #44475A #F8F8F2
-        active_workspace   #282A36 #44475A #F8F8F2
-        inactive_workspace #282A36 #282A36 #BFBFBF
-        urgent_workspace   #FF5555 #FF5555 #F8F8F2
-        binding_mode       #FF5555 #FF5555 #F8F8F2
-    }
+    font pango:Hack 8
+    status_command i3status
 }
-## Increase volume
+
+bindsym $mod+Shift+n exec dunstctl close-all
+
+############################
+# MEDIA KEYS
+############################
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && notify-send "🔊 Volume: $(pamixer --get-volume)%"
-
-# Decrease volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 && notify-send "🔉 Volume: $(pamixer --get-volume)%"
+bindsym XF86AudioMute exec --no-startup-id pamixer -t && notify-send "🔇 Mute"
 
-# Mute/Unmute
-bindsym XF86AudioMute exec --no-startup-id pamixer -t && notify-send "🔇 Mute: $(pamixer --get-mute)"
- # Increase brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10% && notify-send "☀️ Brightness: $(brightnessctl get)"
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10% && notify-send "☀️ Brightness"
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- && notify-send "🌙 Brightness"
 
-# Decrease brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- && notify-send "🌙 Brightness: $(brightnessctl get)"
-exec_always --no-startup-id ~/.scripts/monitors.sh
-exec_always --no-startup-id ~/.scripts/wallpapers.sh
+exec --no-startup-id xset r rate 200 50
 exec --no-startup-id betterlockscreen -w dim
-exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id notify-send "Welcome back $USER!" -i ~/.images/icons8-dog-100.png
-exec_always feh --bg-fill /home/bladex404/Downloads/gg.png
+exec_always feh --bg-fill /home/coffinggx/wallpapers/43.jpg
 exec --no-startup-id xinput set-prop "ELAN07FB:00 04F3:321A Touchpad" "libinput Accel Speed" 0.6
-exec --no-startup-id picom --config ~/.config/picom/picom.conf
-
-
+exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60
 
 bindsym $mod+e bar mode toggle
