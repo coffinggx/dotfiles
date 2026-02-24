@@ -1,0 +1,39 @@
+# i3status configuration
+
+general {
+    colors = true
+    interval = 2
+}
+
+order += "cpu_usage"
+order += "memory"
+order += "battery all"
+order += "tztime local"
+
+# CPU usage
+cpu_usage {
+    format = "CPU: %usage"
+}
+
+# Memory usage
+memory {
+    format = "MEM: %used / %total"
+}
+
+# Battery (all batteries)
+battery all {
+    format = "BAT: %percentage"
+    format_down = "BAT: N/A"
+    status_chr = "⚡"
+    status_bat = ""
+    status_unk = "?"
+    status_full = "✔"
+    low_threshold = 15
+    threshold_type = "percentage"
+}
+
+# Time only
+tztime local {
+    format = "%H:%M:%S"
+}
+
