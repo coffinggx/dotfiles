@@ -1,11 +1,12 @@
 set $mod Mod4
 
-new_window pixel
-default_border pixel 0
-default_floating_border pixel 1
+default_floating_border pixel 2
 
 font pango:monospace 15px
 floating_modifier $mod
+default_border pixel 0
+gaps inner 0
+gaps outer 0
 
 
 bindsym $mod+Return exec alacritty
@@ -14,12 +15,11 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+b exec brave
 
 bindsym $mod+d exec rofi -show drun -columns 3
-
+popup_during_fullscreen smart
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
-
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -78,7 +78,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-for_window [floating] resize set 880 620
+for_window [floating] resize set 900 1000
 for_window [floating] move position center
 
 for_window [workspace="5"] floating enable
@@ -86,10 +86,10 @@ for_window [workspace="5"] resize set 900 1000
 for_window [workspace="5"] move position center
 
 mode "resize" {
-    bindsym Left  resize shrink width  10 px or 1 ppt
-    bindsym Down  resize grow   height 10 px or 1 ppt
-    bindsym Up    resize shrink height 10 px or 1 ppt
-    bindsym Right resize grow   width  10 p0x or 1 ppt
+      bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -100,16 +100,27 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # class                 border  background text     indicator child_border
-client.focused          #5E5C64 #1E1E1E #F2F2F2 #5E5C64   #5E5C64
-client.focused_inactive #3A3A3A #1E1E1E #CFCFCF #3A3A3A   #3A3A3A
-client.unfocused        #1E1E1E #1E1E1E #9E9E9E #1E1E1E   #1E1E1E
-client.urgent           #A54242 #A54242 #FFFFFF #A54242   #A54242
+client.focused #99cc99 #99cc99 #000000 #2d2d2d
+client.focused_inactive #393939 #393939 #888888 #292d2e
+client.unfocused #2d2d2d #2d2d2d #999999 #292d2e
+client.urgent #2f343a #900000 #ffffff #900000
 client.placeholder      #1E1E1E #1E1E1E #FFFFFF #1E1E1E   #1E1E1E
 client.background       #1E1E1E
 
 bar {
-    font pango:Hack 8
+    i3bar_command i3bar --transparency
+    position top
+    font pango:Hack 10
     status_command i3status
+  colors {
+    separator #515151
+    background #2d2d2d
+    statusline #cccccc
+    focused_workspace #99cc99 #99cc99 #000000 #ffffff
+    active_workspace #333333 #333333 #ffffff #ffffff
+    inactive_workspace #2d2d2d #2d2d2d #999999 #aea79f
+    urgent_workspace #f2777a #f2777a #ffffff #ffffff
+  }
 }
 
 bindsym $mod+Shift+n exec dunstctl close-all
@@ -123,13 +134,14 @@ bindsym XF86AudioMute exec --no-startup-id pamixer -t && notify-send "🔇 Mute"
 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10% && notify-send "☀️ Brightness"
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- && notify-send "🌙 Brightness"
-
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id xset r rate 200 50
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id notify-send "Welcome back $USER!" -i ~/.images/icons8-dog-100.png
-exec_always feh --bg-fill /home/coffinggx/wallpapers/43.jpg
+exec --no-startup-id notify-send "Logging as: $USER!"
+exec_always feh --bg-fill /home/coffinggx/wallpapers/20.jpg
 exec --no-startup-id xinput set-prop "ELAN07FB:00 04F3:321A Touchpad" "libinput Accel Speed" 0.6
-exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60
-
+exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 144
+#exec --no-startup-id ~/personal/Scripts/picom-autopause.sh
 bindsym $mod+e bar mode toggle

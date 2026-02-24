@@ -5,20 +5,27 @@ TERM = "xterm-256color"
 blinking = "on"
 # shape = "Beam"
 [window]
-padding.x = 10
-padding.y = 10
+padding.x = 0
+padding.y = 0
 decorations = "full"
 dynamic_title = true
-
-opacity = 0.8
+opacity = 0.95
 blur = true
 
-option_as_alt = "Both"
+# option_as_alt = "Both"
 
 [font.normal]
-family = "Iosevka "
+family = "Iosevka"
+style = "Regular"
 
-[window.dimensions]
-columns = 60
-lines = 20
+# [window.dimensions]
+# columns = 60
+# lines = 20
+#
+[colors.primary]
+background = '#1d1d1d' # Example: sets background to black
+foreground = '#d8d8d8' # Example: sets foreground (text) to a light gray
+[font]
+size = 11
+
 
