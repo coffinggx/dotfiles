@@ -1,31 +1,36 @@
-[env]
-TERM = "xterm-256color"
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/github_dark_high_contrast.toml"
+]
+[font]
+size = 10.0
 
-[cursor.style]
-blinking = "on"
-# shape = "Beam"
-[window]
-padding.x = 0
-padding.y = 0
-decorations = "full"
-dynamic_title = true
-opacity = 0.95
-blur = true
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
 
-# option_as_alt = "Both"
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
 
 [font.normal]
-family = "Iosevka"
+family = "JetBrains Mono"
 style = "Regular"
 
-# [window.dimensions]
-# columns = 60
-# lines = 20
-#
-[colors.primary]
-background = '#1d1d1d' # Example: sets background to black
-foreground = '#d8d8d8' # Example: sets foreground (text) to a light gray
-[font]
-size = 11
+[font.offset]
+x = 0
+y = 0
 
+[selection]
+save_to_clipboard = true
 
+[window]
+opacity = 1
+
+[window.padding]
+x = 0
+y = 0

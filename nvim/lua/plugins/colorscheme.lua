@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-	color = color or "rose-pine"
+	color = color or "vscode-gruber"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -45,6 +45,23 @@ return {
 			vim.cmd("colorscheme rose-pine-main")
 
 			ColorMyPencils()
+		end,
+	},
+	{
+		"blazkowolf/gruber-darker.nvim",
+		name = "gruber-darker",
+		config = function()
+			require("gruber-darker").setup({})
+		end,
+	},
+	{
+		"shadowy-pycoder/vscode-gruber.nvim",
+		dependencies = { "rktjmp/lush.nvim" },
+		name = "vscode-gruber",
+		branch = "main",
+		priority = 1000,
+		config = function()
+			vim.cmd("colorscheme vscode-gruber")
 		end,
 	},
 }

@@ -1,15 +1,15 @@
 set $mod Mod4
 
-default_floating_border pixel 2
+# default_floating_border pixel 2
 
 font pango:monospace 15px
 floating_modifier $mod
-default_border pixel 0
+# default_border pixel  0
 gaps inner 0
 gaps outer 0
 
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+b exec brave
@@ -35,8 +35,7 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-
+for_window [class=".*"] title_format "%title"
 bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
@@ -100,31 +99,29 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # class                 border  background text     indicator child_border
-client.focused #99cc99 #99cc99 #000000 #2d2d2d
-client.focused_inactive #393939 #393939 #888888 #292d2e
-client.unfocused #2d2d2d #2d2d2d #999999 #292d2e
-client.urgent #2f343a #900000 #ffffff #900000
-client.placeholder      #1E1E1E #1E1E1E #FFFFFF #1E1E1E   #1E1E1E
-client.background       #1E1E1E
-
+client.focused          #1e1e1e #1e1e1e #ffffff #4c7899 #1e1e1e
+client.focused_inactive #2a2a2a #2a2a2a #bbbbbb #3a3a3a #2a2a2a
+client.unfocused        #2f2f2f #2f2f2f #999999 #3a3a3a #2f2f2f
+client.urgent           #900000 #900000 #ffffff #900000 #900000
+client.placeholder      #1e1e1e #1e1e1e #ffffff #1e1e1e #1e1e1e
+client.background       #121212
 bar {
     i3bar_command i3bar --transparency
-    position top
+    position bottom
     font pango:Hack 10
     status_command i3status
   colors {
     separator #515151
     background #2d2d2d
     statusline #cccccc
-    focused_workspace #99cc99 #99cc99 #000000 #ffffff
-    active_workspace #333333 #333333 #ffffff #ffffff
+    focused_workspace #1e1e1e #2e2e2e #000000 #ffffff
+    active_workspace #1e1e1e #333333 #ffffff #ffffff
     inactive_workspace #2d2d2d #2d2d2d #999999 #aea79f
     urgent_workspace #f2777a #f2777a #ffffff #ffffff
   }
 }
 
 bindsym $mod+Shift+n exec dunstctl close-all
-
 ############################
 # MEDIA KEYS
 ############################
@@ -136,12 +133,12 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10% && notif
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- && notify-send "🌙 Brightness"
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id nvidia-settings --load-config-only
-exec --no-startup-id xset r rate 200 50
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id notify-send "Logging as: $USER!"
-exec_always feh --bg-fill /home/coffinggx/wallpapers/20.jpg
+exec_always feh --bg-fill /home/coffinggx/Downloads/wallpaper.png
 exec --no-startup-id xinput set-prop "ELAN07FB:00 04F3:321A Touchpad" "libinput Accel Speed" 0.6
-exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 144
+exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60
 #exec --no-startup-id ~/personal/Scripts/picom-autopause.sh
+exec --no-startup-id xset r rate 200 50
 bindsym $mod+e bar mode toggle

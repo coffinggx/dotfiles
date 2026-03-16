@@ -7,7 +7,7 @@ return {
 			local builtin = require("telescope.builtin")
 			require("telescope").setup({
 				defaults = {
-					file_ignore_patterns = { "node_modules", ".git", "target",".gradle", "myenv" },
+					file_ignore_patterns = { "node_modules", ".git", "target",".gradle","build",".cache", "myenv" },
 				},
 				pickers = {
 					find_files = {

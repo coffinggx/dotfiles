@@ -21,9 +21,9 @@ return {
 				graphql = { "prettier" },
 				lua = { "stylua" },
 				terraform = { "terraform_fmt" },
-				python = { "isort", "black" },
+				python = { "prettier", "black" },
 				rust = { "rustfmt" },
-				c = { "clang-format" },
+				c = { "prettier" },
 			},
 			-- format_after_save = {
 			-- 	lsp_fallback = true,

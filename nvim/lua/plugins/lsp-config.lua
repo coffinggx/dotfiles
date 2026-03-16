@@ -25,11 +25,6 @@ return {
 			})
 		end,
 	},
-
-	{
-		"mfussenegger/nvim-jdtls",
-	},
-
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = {
@@ -43,7 +38,6 @@ return {
 					"black",
 					"eslint_d",
 					"rustfmt",
-					"clang-format",
 				},
 			})
 		end,
@@ -61,8 +55,8 @@ return {
 
 			vim.diagnostic.config({
 				virtual_text = false,
-				signs = true,
-				underline = true,
+				signs =false,
+				underline = false,
 				update_in_insert = false,
 				severity_sort = true,
 				float = {
@@ -75,17 +69,17 @@ return {
 				},
 			})
 
-			vim.api.nvim_create_autocmd("InsertEnter", {
-				callback = function()
-					vim.diagnostic.hide()
-				end,
-			})
-
-			vim.api.nvim_create_autocmd("InsertLeave", {
-				callback = function()
-					vim.diagnostic.show()
-				end,
-			})
+			-- vim.api.nvim_create_autocmd("InsertEnter", {
+			-- 	callback = function()
+			-- 		vim.diagnostic.hide()
+			-- 	end,
+			-- })
+			--
+			-- vim.api.nvim_create_autocmd("InsertLeave", {
+			-- 	callback = function()
+			-- 		vim.diagnostic.show()
+			-- 	end,
+			-- })
 
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.pyright.setup({ capabilities = capabilities })
@@ -107,6 +101,7 @@ return {
 			})
 			lspconfig.cssls.setup({ capabilities = capabilities })
 			lspconfig.gopls.setup({ capabilities = capabilities })
+            -- lspconfig.jdtls.setup({ capabilities = capabilities })
 			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 				filetypes = {
@@ -131,14 +126,12 @@ return {
 
 			vim.keymap.set("n", "<leader>w", "<C-w>w")
 
-			vim.keymap.set("n", "<leader>q", vim.diagnostic.open_float)
-			vim.keymap.set("n", "<leader>Q", function()
+			vim.keymap.set("n", "<leader>q", function()
 				vim.diagnostic.setloclist()
 				vim.cmd("lopen")
 			end)
-
+            vim.keymap.set("n", "<leader>t", "<cmd>term<cr>")
 			vim.keymap.set("n", "<leader>qc", "<cmd>lclose<cr>")
-
 			vim.keymap.set("n", "<leader>cA", function()
 				vim.lsp.buf.code_action({
 					apply = true,
