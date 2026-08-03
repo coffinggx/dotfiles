@@ -1,0 +1,56 @@
+super + Return
+    kitty
+
+super + d
+    rofi -show drun
+
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# set the window state
+# t -> tiled
+# shift + t -> smol tile
+# s -> floating
+# a -> fullscreen
+super + {t,shift + t,s,a}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
+
+super + {_,Shift + }  {h,j,k,l}
+    bspc node -s {west,south,north,east}
+
+super + {1-9}
+    bspc desktop -f ^{1-9}
+
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+super + {Left,Right}
+    bspc desktop -f {prev,next}
+
+Print
+    flameshot full -c
+
+super + {_ shift + } s
+    flameshot gui
+
+# Volume
+XF86AudioRaiseVolume
+    pamixer -i 5 && notify-send -r 9991 "Volume" "$(pamixer --get-volume)%"
+
+XF86AudioLowerVolume
+    pamixer -d 5 && notify-send -r 9991 "Volume" "$(pamixer --get-volume)%"
+
+XF86AudioMute
+    pamixer -t && notify-send -r 9991 "Volume" "$(pamixer --get-mute && echo Muted || echo "$(pamixer --get-volume)%")"
+
+# Brightness
+XF86MonBrightnessUp
+    brightnessctl set +10% && notify-send -r 9992 "Brightness" "$(brightnessctl -m | cut -d, -f4)"
+
+XF86MonBrightnessDown
+    brightnessctl set 10%- && notify-send -r 9992 "Brightness" "$(brightnessctl -m | cut -d, -f4)"
