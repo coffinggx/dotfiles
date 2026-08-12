@@ -48,7 +48,9 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir =  vim.fn.stdpath("data") .. "/undodir"
 
-vim.opt.clipboard:append("unnamedplus")
+-- Use the system clipboard by default
+vim.opt.clipboard = "unnamedplus"
+
 vim.opt.isfname:append("@-@")
 -- block cusor for all mode
 vim.opt.guicursor=""

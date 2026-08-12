@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-	color = color or "retrobox"
+	color = color or "koda-moss"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -24,6 +24,35 @@ return {
 			})
 		end,
 	},
+    {
+        "rebelot/kanagawa.nvim",
+        config = function ()
+            require('kanagawa').setup({
+                compile = false,             
+                undercurl = true,            
+                commentStyle = { italic = true },
+                functionStyle = {},
+                keywordStyle = { italic = true},
+                statementStyle = { bold = true },
+                typeStyle = {},
+                transparent = false,        
+                dimInactive = false,        
+                terminalColors = true,
+                colors = {  
+                    palette = {},
+                    theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+                },
+                overrides = function(colors)
+                    return {}
+                end,
+                theme = "wave",
+                background = {      
+                    dark = "wave",
+                    light = "lotus"
+    },
+})
+        end,
+    },
 	{
 		"ellisonleao/gruvbox.nvim",
 		config = function()

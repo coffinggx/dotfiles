@@ -4,10 +4,10 @@
     ./files.nix
     ./theme.nix
     ./programs/fish.nix
+    ./programs/mpd.nix
+    ./programs/rmpc.nix
     ./programs/tmux.nix
-    ./programs/neovim.nix
     ./programs/git.nix
-
-    ./programs/nixvim
+    ./programs/fastfetch.nix
   ];
 }

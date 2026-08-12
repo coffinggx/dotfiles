@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 xset r rate 200 35
+xrandr --output eDP --mode 1920x1080 --rate 60
 # Kill old processes
 pkill -x sxhkd
 pkill -x picom
@@ -11,7 +12,7 @@ sxhkd &
 picom &
 
 # Wallpaper
-feh --bg-fill ~/personal/wallpapers/x.jpg &
+feh --bg-fill ~/personal/wallpapers/ggs.png &
 
 # Desktops
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
@@ -36,9 +37,10 @@ bspc config automatic_scheme longest_side
 bspc config initial_polarity second_child
 
 # Floating dialogs
-bspc rule -a "*" state=floating center=on
+bspc rule -a "*" state=tilting center=on
 bspc rule -a Gimp state=floating
+bspc rule -a librewolf state=floating
 bspc rule -a feh state=floating
 bspc rule -a pavucontrol state=floating
 bspc rule -a blueman-manager state=floating
-bspc rule -a flameshot state=floating
+bspc rule -a snapshot state=floating

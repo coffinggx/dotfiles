@@ -11,6 +11,8 @@
     ./power.nix
     ./sound.nix
     ./users.nix
+    ./input.nix
+
 
     ../../wm/bspwm.nix
   ];

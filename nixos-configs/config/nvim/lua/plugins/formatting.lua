@@ -15,21 +15,10 @@ return {
 				svelte = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
-				json = { "prettier" },
-				yaml = { "prettier" },
-				markdown = { "prettier" },
-				graphql = { "prettier" },
 				lua = { "stylua" },
-				terraform = { "terraform_fmt" },
 				python = { "prettier", "black" },
 				rust = { "rustfmt" },
-				c = { "prettier" },
 			},
-			-- format_after_save = {
-			-- 	lsp_fallback = true,
-			-- 	async = true,
-			-- 	timeout_ms = 1000,
-			-- },
 		})
 
 		-- Key mapping for manual formatting
@@ -40,16 +29,5 @@ return {
 				timeout_ms = 1000,
 			})
 		end, { desc = "Format file or range (in visual mode)" })
-		-- Optionally, you can set up format on save
-		-- 		vim.api.nvim_create_autocmd("BufWritePre", {
-		-- 			pattern = "*",
-		-- 			callback = function()
-		-- 				conform.format({
-		-- 					lsp_fallback = true,
-		-- 					async = true,
-		-- 					timeout_ms = 1000,
-		-- 				})
-		-- 			end,
-		-- 		})
 	end,
 }

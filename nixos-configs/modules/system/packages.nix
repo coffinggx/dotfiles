@@ -18,6 +18,17 @@
 
     libraries = with pkgs; [
       stdenv.cc.cc
+       gtk3
+       atk
+       pango
+       cairo
+       glib
+       gdk-pixbuf
+       harfbuzz
+       lz4
+       zstd
+       xz
+       zlib
     ];
   };
 }
