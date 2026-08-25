@@ -4,6 +4,7 @@
   networking.hostName = "nixos";
 
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   services.printing.enable = true;
 

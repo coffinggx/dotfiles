@@ -1,17 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  boot.kernelModules = [
-    "nvidia_uvm"
-    "nvidia_modeset"
-    "nvidia_drm"
-    "nvidia"
-  ];
-
-  boot.kernelParams = [
-    "nvidia-drm.modeset=1"
-  ];
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -22,10 +11,7 @@
     ];
   };
 
-  services.xserver.videoDrivers = [
-    "amdgpu"
-    "nvidia"
-  ];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -51,8 +37,6 @@
   };
 
   environment.variables = {
-    LIBVA_DRIVER_NAME = "radeonsi";
-    VDPAU_DRIVER = "radeonsi";
     PATH = "${pkgs.clang-tools}/bin:$PATH";
   };
 }

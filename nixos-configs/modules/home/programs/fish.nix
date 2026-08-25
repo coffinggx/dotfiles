@@ -28,6 +28,11 @@
       test -n "$file"; and nvim "$file"
     '';
 
+    functions.nf = ''
+        set file (fd --type f | fzf)
+        test -n "$file"; and zathura "$file"
+    '';
+
     functions.menv = ''
       cd ~/personal/Programming/ML
 

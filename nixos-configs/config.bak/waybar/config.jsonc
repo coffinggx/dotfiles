@@ -1,0 +1,88 @@
+{
+    "layer": "top",
+    "exclusive": true,
+    "position": "top",
+    "height": 20,
+    "spacing": 0,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/sep",
+        "hyprland/window"
+    ],
+
+    "modules-center": [],
+
+    "modules-right": [
+        "custom/sep",
+        "cpu",
+        "custom/sep",
+        "memory",
+        "custom/sep",
+        "pulseaudio",
+        "custom/sep",
+        "battery",
+        "custom/sep",
+        "clock"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}",
+        "persistent-workspaces": {
+            "*": 1
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": false
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " CPU {usage}% ",
+        "tooltip": false
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "RAM: {percentage}%",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "VOL: {volume}%",
+        "format-muted": "VOL: 0%",
+        "scroll-step": 5,
+        "tooltip": false,
+        "on-click": "pavucontrol"
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "BAT: {capacity}%",
+        "format-charging": "BAT: {capacity}%",
+        "format-plugged": "BAT: {capacity}%",
+        "format-critical": "BAT: {capacity}%",
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d %H:%M}",
+        "tooltip": false
+    },
+
+    "custom/sep": {
+        "format": "|",
+        "interval": "once"
+    }
+}

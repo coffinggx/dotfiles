@@ -2,7 +2,14 @@
 
 {
   home.packages = with pkgs; [
-
+    vscode
+    en-croissant
+    jetbrains.clion
+    proton-vpn
+    awww
+    flameshot
+    readest
+    foliate
     gnumake
     gdb
     cmake

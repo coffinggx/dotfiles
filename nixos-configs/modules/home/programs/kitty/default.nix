@@ -1,3 +1,8 @@
+{ config, pkgs, ... }:
+
+{
+  programs.kitty.enable = true;
+  home.file.".config/kitty/kitty.conf".text = ''
 # ──────────────────────────────
 #   FONT
 # ──────────────────────────────
@@ -47,58 +52,66 @@ map ctrl+shift+right next_tab
 map ctrl+shift+w     close_tab
 
 # ──────────────────────────────
-#   COLORS — Koda Palette Dark Monochrome
+#   COLORS — Koda Super Black
 # ──────────────────────────────
 
-foreground            #a6a6a6
-background            #080808
+foreground            #b8b8b8
+background            #050505
 background_opacity    0.98
 
-selection_foreground  #c4c4c4
-selection_background  #1a1a1a
+selection_foreground  #eeeeee
+selection_background  #202020
 
-cursor                #c4c4c4
-cursor_text_color     #080808
+cursor                #d8d8d8
+cursor_text_color     #050505
 
-url_color             #8a8a8a
-active_border_color   #1a1a1a
-inactive_border_color #121212
+url_color             #a0a0a0
+active_border_color   #222222
+inactive_border_color #101010
 
 # ───────── ANSI
 
 # black / base
 color0   #000000
-color8   #3d3d3d
+color8   #4a4a4a
 
 # red / danger
-color1   #4a4a4a
-color9   #686868
+color1   #555555
+color9   #858585
 
 # green
-color2   #5c5c5c
-color10  #a6a6a6
+color2   #666666
+color10  #aaaaaa
 
 # yellow / warning
-color3   #666666
-color11  #b0b0b0
+color3   #737373
+color11  #c0c0c0
 
 # blue / highlight
-color4   #707070
-color12  #b8b8b8
+color4   #808080
+color12  #c8c8c8
 
 # magenta / pink
-color5   #7a7a7a
+color5   #8c8c8c
 color13  #d0d0d0
 
 # cyan
-color6   #848484
-color14  #c0c0c0
+color6   #969696
+color14  #d8d8d8
 
-# white / fg
-color7   #a6a6a6
-color15  #e0e0e0
+# white / foreground
+color7   #b8b8b8
+color15  #eeeeee
+
+# ──────────────────────────────
+#   CURSOR / BORDER
+# ──────────────────────────────
 
 window_border_width 0
+
 cursor_shape block
 cursor_blink_interval 0.8
+
 shell_integration enabled
+'';
+}
