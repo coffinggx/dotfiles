@@ -6,8 +6,15 @@
     description = "Nixy theme colors";
   };
 
+  # Register a `stylix` option so modules that check for `config.stylix` won't fail
+  options.stylix = lib.mkOption {
+    type = lib.types.attrs;
+    description = "Stylix options (placeholder from Nixy theme)";
+    default = {};
+  };
+
   config = {
-    stylix = {
+    stylix = lib.mkMerge [ (config.stylix or {}) {
       enable = true;
 
       # Base16-ish palette used by nixy (copied from anotherhadi/nixy)
@@ -28,6 +35,13 @@
         base0D = "9E97F8";
         base0E = "C090E8";
         base0F = "B3929B";
+      };
+    }];
+
+    # Expose palette for modules that reference `config.lib.stylix.colors`
+    lib = {
+      stylix = {
+        colors = (config.stylix.base16Scheme or {});
       };
     };
   };
