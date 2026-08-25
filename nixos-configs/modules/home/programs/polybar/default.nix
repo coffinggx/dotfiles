@@ -26,7 +26,7 @@ modules-left=bspwm
 modules-center=xwindow
 modules-right=backlight pulseaudio battery date tray
 separator=│
-separator-foreground=\${colors.grey}
+separator-foreground=#44475a
 wm-restack=bspwm
 enable-ipc=true
 
@@ -38,7 +38,7 @@ label-focused-foreground=\${colors.red}
 label-focused-underline=\${colors.red}
 label-focused-padding=1
 label-occupied=%name%
-label-occupied-foreground=\${colors.cyan}
+label-occupied-foreground=#7dcfff
 label-occupied-padding=1
 label-empty=%name%
 label-empty-foreground=#666
