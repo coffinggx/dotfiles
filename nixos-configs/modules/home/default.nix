@@ -2,6 +2,7 @@
   imports = [
     ./packages.nix
     ./files.nix
+    ./theme.nix
     ./programs/fish.nix
     ./programs/ghostty.nix
     ./programs/tmux.nix
