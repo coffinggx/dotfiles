@@ -1,60 +1,69 @@
 {
-  programs.tmux.enable = true;
+  programs.tmux = {
+    enable = true;
 
-  home.file.".tmux.conf".text = ''
-# ~/.tmux.conf
+    # ── Native Home Manager options ─────────────────────────
 
-# --- Prefix Key ---
-unbind C-b              # Unbind the default prefix
-set -g prefix C-a       # Use Ctrl-a as the prefix
-bind C-a send-prefix    # Send prefix if you press it twice
+    prefix = "C-a";
 
-# --- General Settings ---
-set -g mouse on         # Enable mouse (resize, select panes, switch windows)
-set -g history-limit 10000
+    mouse = true;
 
-# --- Split Panes ---
-bind | split-window -h
-bind - split-window -v
-unbind '"'
-unbind %
+    historyLimit = 10000;
 
-# --- Pane Navigation with Vim keys ---
-bind -r h select-pane -L
-bind -r j select-pane -D
-bind -r k select-pane -U
-bind -r l select-pane -R
+    baseIndex = 1;
 
-# Resize panes with Ctrl-a + Shift + arrows
-bind -r H resize-pane -L 5
-bind -r J resize-pane -D 5
-bind -r K resize-pane -U 5
-bind -r L resize-pane -R 5
+    resizeAmount = 5;
 
-# --- Status Bar Styling ---
-set -g status on
-set -g status-interval 5
-set -g status-justify centre
-set -g status-bg black
-set -g status-fg white
+    keyMode = "vi";
 
-set -g status-left-length 40
-set -g status-right-length 150
-set -g status-left "#[fg=green]#S #[fg=cyan]| #[fg=yellow]%Y-%m-%d"
-set -g status-right "#[fg=cyan]%H:%M #[fg=white]| #[fg=green]#(whoami)@#H"
+    # ── Raw tmux options not exposed by Home Manager ────────
+    extraConfig = ''
+      # Send prefix when Ctrl-a is pressed twice
+      bind C-a send-prefix
 
-# --- Window and Pane Styling ---
-setw -g window-status-current-style fg=black,bg=yellow
-setw -g window-status-current-format " #I:#W "
-setw -g window-status-format " #I:#W "
+      # Disable bell
+      set-option -g bell-action none
 
-# --- Quality of Life ---
-set-option -g bell-action none
-set -g base-index 1         # Start window numbering at 1
-setw -g pane-base-index 1   # Start pane numbering at 1
+      # ── Splits ────────────────────────────────────────────
+      unbind '"'
+      unbind %
 
-# --- Reload Config ---
-bind r source-file ~/.tmux.conf \; display-message "Config reloaded!"
+      bind | split-window -h
+      bind - split-window -v
 
-'';
+      # ── Pane Navigation ───────────────────────────────────
+      bind -r h select-pane -L
+      bind -r j select-pane -D
+      bind -r k select-pane -U
+      bind -r l select-pane -R
+
+      # ── Pane Resizing ─────────────────────────────────────
+      bind -r H resize-pane -L 5
+      bind -r J resize-pane -D 5
+      bind -r K resize-pane -U 5
+      bind -r L resize-pane -R 5
+
+      # ── Status Bar ────────────────────────────────────────
+      set -g status on
+      set -g status-interval 5
+      set -g status-justify centre
+
+      set -g status-bg black
+      set -g status-fg white
+
+      set -g status-left-length 40
+      set -g status-right-length 150
+
+      set -g status-left '#[fg=green]#S #[fg=cyan]| #[fg=yellow]%Y-%m-%d'
+      set -g status-right '#[fg=cyan]%H:%M #[fg=white]| #[fg=green]#(whoami)@#H'
+
+      # ── Window Styling ────────────────────────────────────
+      setw -g window-status-current-style 'fg=black,bg=yellow'
+      setw -g window-status-current-format ' #I:#W '
+      setw -g window-status-format ' #I:#W '
+
+      # ── Reload ────────────────────────────────────────────
+      bind r source-file ~/.tmux.conf \; display-message "Config reloaded!"
+    '';
+  };
 }

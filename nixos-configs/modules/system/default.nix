@@ -13,12 +13,7 @@
     ./users.nix
     ./input.nix
     ./game.nix
-
-
-    # ../../wm/bspwm.nix
-    ../../wm/i3.nix
-    ../../wm/sway.nix
-      ./hyprland-custom.nix
-    ../themes/nixy/nixy.nix
+    ./i3/i3.nix
+    ./openbox/openbox.nix
   ];
 }

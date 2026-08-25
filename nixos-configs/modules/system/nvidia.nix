@@ -4,11 +4,6 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-
-    extraPackages = with pkgs; [
-      libva-vdpau-driver
-      libvdpau-va-gl
-    ];
   };
 
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
@@ -17,7 +12,7 @@
     modesetting.enable = true;
 
     powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    powerManagement.finegrained = false;
 
     open = true;
 
@@ -36,7 +31,7 @@
     };
   };
 
-  environment.variables = {
+ environment.variables = {
     PATH = "${pkgs.clang-tools}/bin:$PATH";
   };
 }

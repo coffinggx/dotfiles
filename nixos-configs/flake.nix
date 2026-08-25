@@ -7,14 +7,22 @@
         url = "git+https://github.com/nix-community/home-manager.git";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixvim.url = "github:nix-community/nixvim";
+    
     zen-browser = {
         url = "github:youwen5/zen-browser-flake";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-doom-emacs-unstraightened = {
+        url = "github:marienz/nix-doom-emacs-unstraightened";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs,home-manager,nixvim, ... }@inputs: {
+ 
+
+  outputs = { self, nixpkgs,home-manager,nixvim,nix-doom-emacs-unstraightened, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 

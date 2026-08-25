@@ -1,22 +1,15 @@
 {
   imports = [
-    ../themes/nixy/nixy.nix
-    ../themes/nixy/waybar-style.nix
     ./packages.nix
     ./files.nix
-    ./theme.nix
     ./programs/fish.nix
-    ./programs/mpd.nix
-    ./programs/rmpc.nix
+    ./programs/ghostty.nix
     ./programs/tmux.nix
     ./programs/git.nix
-    ./programs/fastfetch.nix
-    ./programs/waybar-custom.nix
-    ./programs/nixvim/default.nix
-    ./programs/rofi/default.nix
-    ./programs/kitty/default.nix
-    ./programs/foot/default.nix
-    ./programs/tmux.nix
-    ./programs/polybar/default.nix
+     ./programs/fastfetch.nix
+
+     ./programs/doom-emacs/default.nix
+
+
   ];
 }

@@ -2,14 +2,12 @@
 
 {
   home.packages = with pkgs; [
-    vscode
-    en-croissant
-    jetbrains.clion
+    grip
+
+    typst
+    tinymist
+
     proton-vpn
-    awww
-    flameshot
-    readest
-    foliate
     gnumake
     gdb
     cmake
@@ -28,16 +26,8 @@
     python3
     uv
     pkg-config
-    spotdl
 
     zed-editor
-
-    foot
-
-    waybar
-    rofi
-    hyprpaper
-    swayidle
 
     brave
     discord
@@ -46,18 +36,12 @@
     qbittorrent
     thunar
 
-    rustc 
-    cargo
-    rust-analyzer
-
-    mpc
-    ncmpcpp
+    rustup
 
     unzip
     ripgrep
     tree
     pnpm
-    shutter
     xclip
     zathura
     mpv
