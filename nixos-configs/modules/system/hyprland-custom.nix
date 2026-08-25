@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 
-{
+lib.mkIf (lib.hasAttr "wayland" config) {
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang";
